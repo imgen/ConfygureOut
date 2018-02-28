@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TupleExtensions.VictorGavrish" Version="1.2.4" />
+  </ItemGroup>
+
 </Project>
