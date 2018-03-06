@@ -3,19 +3,19 @@ using System.Reflection;
 using System.Threading.Tasks;
 using ConfigR;
 
-namespace ConfygureOut.ConfigRSource
+namespace ConfygureOut.Sources
 {
     public class ConfigRSource: BaseConfigureSource
     {
         private readonly string _configFilePath;
         private IDictionary<string, object> _configurations;
 
-        public ConfigRSource(string configFilePath)
+        public ConfigRSource(string name, string configFilePath): base(name)
         {
             _configFilePath = configFilePath;
         }
 
-        protected override async Task LoadConfiguration()
+        protected override async Task LoadConfigurations()
         {
             _configurations = await new Config().UseRoslynCSharpLoader(_configFilePath).LoadDictionary();
         }

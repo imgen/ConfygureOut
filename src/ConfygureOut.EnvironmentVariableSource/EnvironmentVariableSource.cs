@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 
-namespace ConfygureOut.EnvironmentVariableSource
+namespace ConfygureOut.Sources
 {
     public class EnvironmentVariableSource: BaseConfigureSource
     {
         private readonly string _environmentVariableKeyPrefix;
 
-        public EnvironmentVariableSource(string environmentVariableKeyPrefix)
+        public EnvironmentVariableSource(string name, string environmentVariableKeyPrefix): base(name)
         {
             _environmentVariableKeyPrefix = environmentVariableKeyPrefix;
         }

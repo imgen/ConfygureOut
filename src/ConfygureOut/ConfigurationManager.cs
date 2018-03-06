@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TupleExtensions;
 
 namespace ConfygureOut
@@ -17,17 +18,24 @@ namespace ConfygureOut
             };
         }
 
-        public void PullConfigurationsFromSource(BaseConfigureSource source, IConfiguration target)
+        public Task PullConfigurationsFromSource(BaseConfigureSource source, IConfiguration target)
         {
-            source.PushConfiguration(target);
+            return source.PushConfiguration(target);
         }
 
-        public void PullConfigurationsFromAllSources(T target)
+        public Task<T> PullConfigurationsFromAllSources()
+        {
+            return PullConfigurationsFromAllSources(new T());
+        }
+
+        public async Task<T> PullConfigurationsFromAllSources(T target)
         {
             foreach (var (_, configurationSourceSetting) in _configurationSourceRegistration)
             {
-                configurationSourceSetting.Source.PushConfiguration(target);
+                await configurationSourceSetting.Source.PushConfiguration(target);
             }
+
+            return target;
         }
     }
 }

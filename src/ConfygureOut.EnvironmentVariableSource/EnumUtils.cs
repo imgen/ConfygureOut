@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConfygureOut.EnvironmentVariableSource
+namespace ConfygureOut.Sources
 {
     public static class EnumUtils
     {

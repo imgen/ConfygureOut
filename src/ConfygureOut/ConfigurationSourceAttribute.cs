@@ -8,7 +8,7 @@ namespace ConfygureOut
 
         public string Key { get; set; }
 
-        public ConfigurationSourceAttribute(string name, string key)
+        public ConfigurationSourceAttribute(string name, string key = null)
         {
             Name = name;
             Key = key;

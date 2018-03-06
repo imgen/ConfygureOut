@@ -7,9 +7,14 @@ namespace ConfygureOut
     {
         public string Name { get; set; }
 
-        public void PushConfiguration(IConfiguration configuration)
+        protected BaseConfigureSource(string name)
         {
-            LoadConfiguration();
+            Name = name;
+        }
+
+        public async Task PushConfiguration(IConfiguration configuration)
+        {
+            await LoadConfigurations();
             var properties = configuration.GetConfigPropertiesBySourceName(Name);
             foreach (var property in properties)
             {
@@ -17,7 +22,7 @@ namespace ConfygureOut
             }
         }
 
-        protected virtual Task LoadConfiguration()
+        protected virtual Task LoadConfigurations()
         {
             return Task.CompletedTask;
         }

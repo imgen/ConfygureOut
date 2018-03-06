@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ConfygureOut.EnvironmentVariableSource
+namespace ConfygureOut.Sources
 {
     public static class EnvironmentVariableUtils
     {
