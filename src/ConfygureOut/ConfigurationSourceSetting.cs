@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace ConfygureOut
+﻿namespace ConfygureOut
 {
-    public class ConfigurationSourceSetting
+    internal class ConfigurationSourceSetting
     {
-        public TimeSpan? RefreshInterval { get; set; }
         public BaseConfigureSource Source { get; set; }
     }
 }

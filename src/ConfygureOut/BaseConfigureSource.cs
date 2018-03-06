@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 
 namespace ConfygureOut
 {
@@ -6,15 +7,23 @@ namespace ConfygureOut
     {
         public string Name { get; set; }
 
-        public void PushConfiguration(BaseConfiguration configuration)
+        public void PushConfiguration(IConfiguration configuration)
         {
+            LoadConfiguration();
             var properties = configuration.GetConfigPropertiesBySourceName(Name);
             foreach (var property in properties)
             {
-                PushToProperty(configuration, property);
+                PushToProperty(configuration, property, property.GetCustomAttribute<ConfigurationSourceAttribute>());
             }
         }
 
-        protected abstract void PushToProperty(BaseConfiguration configuration, PropertyInfo property);
+        protected virtual Task LoadConfiguration()
+        {
+            return Task.CompletedTask;
+        }
+
+        protected abstract void PushToProperty(IConfiguration configuration, 
+            PropertyInfo property, 
+            ConfigurationSourceAttribute configSourceAttr);
     }
 }

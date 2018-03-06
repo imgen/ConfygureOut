@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace ConfygureOut
 {
-    public static class CommonExtensions
+    internal static class CommonExtensions
     {
         private static readonly DateTime Date1970Jan1Utc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -357,6 +357,11 @@ namespace ConfygureOut
         public static DateTime ParseDateTime(this string format, string str)
         {
             return DateTime.ParseExact(str, format, null);
+        }
+
+        public static object GetDefaultValue(this Type t)
+        {
+            return t.IsValueType ? Activator.CreateInstance(t) : null;
         }
     }
 }
