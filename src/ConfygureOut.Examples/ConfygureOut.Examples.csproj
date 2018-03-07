@@ -7,12 +7,13 @@
     <ProjectGuid>{DA8CD646-F1E7-4B7F-BEC1-DC0D6219D503}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfygureOut.Examples.ConfigRSource</RootNamespace>
-    <AssemblyName>ConfygureOut.Examples.ConfigRSource</AssemblyName>
+    <RootNamespace>ConfygureOut.Examples</RootNamespace>
+    <AssemblyName>ConfygureOut.Examples</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -128,6 +129,10 @@
     <ProjectReference Include="..\ConfygureOut.ConfigRSource\ConfygureOut.ConfigRSource.csproj">
       <Project>{e179c5b6-ec5d-4c13-82e3-9c62097d27bd}</Project>
       <Name>ConfygureOut.ConfigRSource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfygureOut.Sources.EnvironmentVariableSource\ConfygureOut.Sources.EnvironmentVariableSource.csproj">
+      <Project>{0556b42d-a171-4d06-8598-629c23f19676}</Project>
+      <Name>ConfygureOut.Sources.EnvironmentVariableSource</Name>
     </ProjectReference>
     <ProjectReference Include="..\ConfygureOut\ConfygureOut.csproj">
       <Project>{a1fa36f0-8eae-4eff-ab86-394ef243b564}</Project>

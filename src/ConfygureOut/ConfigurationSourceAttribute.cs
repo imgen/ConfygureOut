@@ -8,10 +8,13 @@ namespace ConfygureOut
 
         public string Key { get; set; }
 
-        public ConfigurationSourceAttribute(string name, string key = null)
+        public bool IsSensitive { get; set; }
+
+        public ConfigurationSourceAttribute(string name, string key = null, bool isSensitive = false)
         {
             Name = name;
             Key = key;
+            IsSensitive = isSensitive;
         }
     }
 }

@@ -10,12 +10,15 @@ namespace ConfygureOut
         private readonly Dictionary<string, ConfigurationSourceSetting> _configurationSourceRegistration =
             new Dictionary<string, ConfigurationSourceSetting>();
 
-        public void RegisterConfigurationSource(BaseConfigureSource source)
+        public void RegisterConfigurationSources(params BaseConfigureSource[] sources)
         {
-            _configurationSourceRegistration[source.Name] = new ConfigurationSourceSetting
+            foreach (var source in sources)
             {
-                Source = source
-            };
+                _configurationSourceRegistration[source.Name] = new ConfigurationSourceSetting
+                {
+                    Source = source
+                };
+            }
         }
 
         public Task PullConfigurationsFromSource(BaseConfigureSource source, IConfiguration target)
