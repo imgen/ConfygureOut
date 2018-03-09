@@ -5,7 +5,7 @@ using ConfigR;
 
 namespace ConfygureOut.Sources
 {
-    public class ConfigRSource: BaseConfigureSource
+    public class ConfigRSource: BaseConfigurationSource
     {
         private readonly string _configFilePath;
         private IDictionary<string, object> _configurations;
@@ -15,18 +15,19 @@ namespace ConfygureOut.Sources
             _configFilePath = configFilePath;
         }
 
-        protected override async Task LoadConfigurations()
+        public override async Task LoadConfigurations()
         {
             _configurations = await new Config().UseRoslynCSharpLoader(_configFilePath).LoadDictionary();
         }
 
-        protected override void PushToProperty(IConfiguration configuration, PropertyInfo property, ConfigurationSourceAttribute configSourceAttr)
+        public override object PushToProperty(IConfiguration configuration, PropertyInfo property, ConfigurationSourceAttribute configSourceAttr)
         {
             var key = configSourceAttr.Key ?? property.Name;
             var value = _configurations.ContainsKey(key)
                 ? _configurations[key]
                 : property.DeclaringType.GetDefaultValue();
             property.SetValue(configuration, value);
+            return value;
         }
     }
 }

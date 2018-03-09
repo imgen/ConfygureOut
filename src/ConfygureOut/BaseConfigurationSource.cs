@@ -1,13 +1,14 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ConfygureOut
 {
-    public abstract class BaseConfigureSource
+    public abstract class BaseConfigurationSource
     {
         public string Name { get; set; }
 
-        protected BaseConfigureSource(string name)
+        protected BaseConfigurationSource(string name)
         {
             Name = name;
         }
@@ -16,18 +17,18 @@ namespace ConfygureOut
         {
             await LoadConfigurations();
             var properties = configuration.GetConfigPropertiesBySourceName(Name);
-            foreach (var property in properties)
+            foreach (var property in properties.Where(x => x.CanWrite))
             {
                 PushToProperty(configuration, property, property.GetCustomAttribute<ConfigurationSourceAttribute>());
             }
         }
 
-        protected virtual Task LoadConfigurations()
+        public virtual Task LoadConfigurations()
         {
             return Task.CompletedTask;
         }
 
-        protected abstract void PushToProperty(IConfiguration configuration, 
+        public abstract object PushToProperty(IConfiguration configuration, 
             PropertyInfo property, 
             ConfigurationSourceAttribute configSourceAttr);
     }

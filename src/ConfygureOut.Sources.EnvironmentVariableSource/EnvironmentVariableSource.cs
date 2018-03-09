@@ -2,7 +2,7 @@
 
 namespace ConfygureOut.Sources
 {
-    public class EnvironmentVariableSource: BaseConfigureSource
+    public class EnvironmentVariableSource: BaseConfigurationSource
     {
         private readonly string _environmentVariableKeyPrefix;
 
@@ -12,7 +12,7 @@ namespace ConfygureOut.Sources
         }
 
 
-        protected override void PushToProperty(IConfiguration configuration, 
+        public override object PushToProperty(IConfiguration configuration, 
             PropertyInfo property, 
             ConfigurationSourceAttribute configSourceAttr)
         {
@@ -24,13 +24,14 @@ namespace ConfygureOut.Sources
 
             var stringValue = key.GetEnvironmentVariable(_environmentVariableKeyPrefix);
             var type = property.DeclaringType;
+            object value = stringValue;
             if (stringValue.IsNullOrEmpty())
             {
-                property.SetValue(configuration, type.GetDefaultValue());
-                return;
+                value = type.GetDefaultValue();
+                property.SetValue(configuration, value);
+                return value;
             }
 
-            object value = stringValue;
             if (type == typeof(int))
             {
                 value = int.Parse(stringValue);
@@ -49,6 +50,7 @@ namespace ConfygureOut.Sources
             }
             
             property.SetValue(configuration, value);
+            return value;
         }
     }
 }

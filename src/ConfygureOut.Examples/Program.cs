@@ -19,16 +19,16 @@ namespace ConfygureOut.Examples
         }
     }
 
-    public class MyConfig: IConfiguration
+    public class MyConfig: BaseConfiguration<MyConfig>
     {
         [ConfigurationSource(nameof(ConfigSourceNames.ConfigR))]
         public string ApiUrl { get; set; }
         [ConfigurationSource(nameof(ConfigSourceNames.ConfigR))]
         public int MaxRetryTimes { get; set; }
 
-        [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable), 
+        [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DB_CONNECTION_STRING", IsSensitive = true)]
-        public string DbConnectionString { get; set; }
+        public string DbConnectionString => (string) PullConfigurationValueFromSource();
     }
 
     public enum ConfigSourceNames

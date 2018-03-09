@@ -1,7 +1,19 @@
-﻿namespace ConfygureOut
+﻿using System;
+
+namespace ConfygureOut
 {
     internal class ConfigurationSourceSetting
     {
-        public BaseConfigureSource Source { get; set; }
+        public BaseConfigurationSource Source { get; set; }
+
+        public TimeSpan? RefreshInterval { get; set; }
+
+        public AutoRefreshState AutoRefreshState { get; set; } = AutoRefreshState.Stopped;
+    }
+
+    internal enum AutoRefreshState
+    {
+        Running,
+        Stopped
     }
 }
