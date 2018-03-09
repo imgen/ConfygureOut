@@ -28,11 +28,8 @@ namespace ConfygureOut.Sources
             if (stringValue.IsNullOrEmpty())
             {
                 value = type.GetDefaultValue();
-                property.SetValue(configuration, value);
-                return value;
             }
-
-            if (type == typeof(int))
+            else if (type == typeof(int))
             {
                 value = int.Parse(stringValue);
             }
@@ -48,8 +45,12 @@ namespace ConfygureOut.Sources
             {
                 value = decimal.Parse(stringValue);
             }
-            
-            property.SetValue(configuration, value);
+
+            if (property.CanWrite)
+            {
+                property.SetValue(configuration, value);
+            }
+
             return value;
         }
     }

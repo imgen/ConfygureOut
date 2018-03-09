@@ -1,4 +1,5 @@
-﻿using ConfygureOut.Sources;
+﻿using System;
+using ConfygureOut.Sources;
 using static System.Console;
 
 namespace ConfygureOut.Examples
@@ -11,11 +12,15 @@ namespace ConfygureOut.Examples
             var environmentVariableSource = new EnvironmentVariableSource(nameof(ConfigSourceNames.EnvironmentVariable),
                 "CONFYGURE_OUT_");
             var configManager = new ConfigurationManager<MyConfig>();
-            configManager.RegisterConfigurationSources(configRSource, environmentVariableSource);
+            configManager.RegisterConfigurationSources(
+                (configRSource, TimeSpan.FromMinutes(1)), 
+                (environmentVariableSource, null));
             
             var configuration = configManager.PullConfigurationsFromAllSources().Result;
-            WriteLine($"The ApiUrl is {configuration.ApiUrl}");
-            WriteLine($"The MaxRetryTimes is {configuration.MaxRetryTimes}");
+            configuration.Manager = configManager;
+            WriteLine($"ApiUrl is {configuration.ApiUrl}");
+            WriteLine($"MaxRetryTimes is {configuration.MaxRetryTimes}");
+            WriteLine($"DbConnectionString is {configuration.DbConnectionString}");
         }
     }
 

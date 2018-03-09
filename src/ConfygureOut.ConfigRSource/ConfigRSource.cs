@@ -26,7 +26,11 @@ namespace ConfygureOut.Sources
             var value = _configurations.ContainsKey(key)
                 ? _configurations[key]
                 : property.DeclaringType.GetDefaultValue();
-            property.SetValue(configuration, value);
+            if (property.CanWrite)
+            {
+                property.SetValue(configuration, value);
+            }
+
             return value;
         }
     }
