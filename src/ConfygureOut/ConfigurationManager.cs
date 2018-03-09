@@ -74,7 +74,7 @@ namespace ConfygureOut
             await PullConfigurationsFromSource(setting.Source, target);
         }
 
-        public object PullConfigurationValueFromSource(IConfiguration target, PropertyInfo property)
+        public object PullConfigurationValueFromSource(PropertyInfo property)
         {
             var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
             var sourceName = configurationSourceAttr.Name;
@@ -83,7 +83,7 @@ namespace ConfygureOut
                 return null;
             }
             var source = _configurationSourceRegistration[sourceName].Source;
-            return source.PushToProperty(target, property, configurationSourceAttr);
+            return source.GetConfigurationValue(configurationSourceAttr.Key?? property.Name, property.PropertyType);
         }
 
         public void StartAutoRefresh(string sourceName, TConfig target)

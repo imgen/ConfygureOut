@@ -10,12 +10,17 @@ namespace ConfygureOut
 
         public object PullConfigurationValueFromSource(PropertyInfo property)
         {
-            return Manager.PullConfigurationValueFromSource(this, property);
+            return Manager.PullConfigurationValueFromSource(property);
         }
 
         public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
             return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
+        }
+
+        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
+        {
+            return (T) PullConfigurationValueFromSource(propertyName);
         }
     }
 }

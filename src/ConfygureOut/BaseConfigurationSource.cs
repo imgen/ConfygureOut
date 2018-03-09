@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -28,8 +29,20 @@ namespace ConfygureOut
             return Task.CompletedTask;
         }
 
-        public abstract object PushToProperty(IConfiguration configuration, 
-            PropertyInfo property, 
-            ConfigurationSourceAttribute configSourceAttr);
+        public virtual object PushToProperty(IConfiguration configuration,
+            PropertyInfo property,
+            ConfigurationSourceAttribute configSourceAttr)
+        {
+            var key = configSourceAttr.Key ?? property.Name;
+            var value = GetConfigurationValue(key, property.DeclaringType);
+            if (property.CanWrite)
+            {
+                property.SetValue(configuration, value);
+            }
+
+            return value;
+        }
+
+        public abstract object GetConfigurationValue(string key, Type propertyType);
     }
 }

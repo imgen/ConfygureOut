@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ConfigR;
 
@@ -20,18 +20,11 @@ namespace ConfygureOut.Sources
             _configurations = await new Config().UseRoslynCSharpLoader(_configFilePath).LoadDictionary();
         }
 
-        public override object PushToProperty(IConfiguration configuration, PropertyInfo property, ConfigurationSourceAttribute configSourceAttr)
+        public override object GetConfigurationValue(string key, Type propertyType)
         {
-            var key = configSourceAttr.Key ?? property.Name;
-            var value = _configurations.ContainsKey(key)
+            return _configurations.ContainsKey(key)
                 ? _configurations[key]
-                : property.DeclaringType.GetDefaultValue();
-            if (property.CanWrite)
-            {
-                property.SetValue(configuration, value);
-            }
-
-            return value;
+                : propertyType.GetDefaultValue();
         }
     }
 }

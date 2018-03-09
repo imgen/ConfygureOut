@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+﻿using System;
 
 namespace ConfygureOut.Sources
 {
@@ -12,43 +12,30 @@ namespace ConfygureOut.Sources
         }
 
 
-        public override object PushToProperty(IConfiguration configuration, 
-            PropertyInfo property, 
-            ConfigurationSourceAttribute configSourceAttr)
+        public override object GetConfigurationValue(string key, 
+            Type propertyType)
         {
-            var key = configSourceAttr.Key;
-            if (key.IsNullOrEmpty())
-            {
-                key = property.Name;
-            }
-
             var stringValue = key.GetEnvironmentVariable(_environmentVariableKeyPrefix);
-            var type = property.DeclaringType;
             object value = stringValue;
             if (stringValue.IsNullOrEmpty())
             {
-                value = type.GetDefaultValue();
+                value = propertyType.GetDefaultValue();
             }
-            else if (type == typeof(int))
+            else if (propertyType == typeof(int))
             {
                 value = int.Parse(stringValue);
             }
-            else if (type == typeof(float))
+            else if (propertyType == typeof(float))
             {
                 value = float.Parse(stringValue);
             }
-            else if(type == typeof(double))
+            else if (propertyType == typeof(double))
             {
                 value = double.Parse(stringValue);
             }
-            else if (type == typeof(decimal))
+            else if (propertyType == typeof(decimal))
             {
                 value = decimal.Parse(stringValue);
-            }
-
-            if (property.CanWrite)
-            {
-                property.SetValue(configuration, value);
             }
 
             return value;

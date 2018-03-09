@@ -21,6 +21,7 @@ namespace ConfygureOut.Examples
             WriteLine($"ApiUrl is {configuration.ApiUrl}");
             WriteLine($"MaxRetryTimes is {configuration.MaxRetryTimes}");
             WriteLine($"DbConnectionString is {configuration.DbConnectionString}");
+            WriteLine($"DurationInHours is {configuration.DurationInHours}");
         }
     }
 
@@ -33,7 +34,11 @@ namespace ConfygureOut.Examples
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DB_CONNECTION_STRING", IsSensitive = true)]
-        public string DbConnectionString => (string) PullConfigurationValueFromSource();
+        public string DbConnectionString => PullConfigurationValueFromSource<string>();
+
+        [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
+            "DURATION_HOURS", IsSensitive = true)]
+        public int DurationInHours => PullConfigurationValueFromSource<int>();
     }
 
     public enum ConfigSourceNames
