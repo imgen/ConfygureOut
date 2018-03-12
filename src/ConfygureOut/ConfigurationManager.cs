@@ -83,7 +83,7 @@ namespace ConfygureOut
                 return null;
             }
             var source = _configurationSourceRegistration[sourceName].Source;
-            return !source.SupportsHotReload ? null : 
+            return !source.SupportsHotLoad ? null : 
                 source.GetConfigurationValue(configurationSourceAttr.Key?? property.Name, property.PropertyType);
         }
 
