@@ -9,6 +9,8 @@ namespace ConfygureOut
     {
         public string Name { get; set; }
 
+        public bool SupportsHotLoad { get; } = false;
+
         protected BaseConfigurationSource(string name)
         {
             Name = name;

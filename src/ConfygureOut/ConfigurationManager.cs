@@ -83,7 +83,8 @@ namespace ConfygureOut
                 return null;
             }
             var source = _configurationSourceRegistration[sourceName].Source;
-            return source.GetConfigurationValue(configurationSourceAttr.Key?? property.Name, property.PropertyType);
+            return !source.SupportsHotReload ? null : 
+                source.GetConfigurationValue(configurationSourceAttr.Key?? property.Name, property.PropertyType);
         }
 
         public void StartAutoRefresh(string sourceName, TConfig target)
