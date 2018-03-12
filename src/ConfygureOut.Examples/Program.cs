@@ -37,7 +37,7 @@ namespace ConfygureOut.Examples
         public string DbConnectionString => PullConfigurationValueFromSource<string>();
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
-            "DURATION_HOURS", IsSensitive = true)]
+            "DURATION_HOURS")]
         public int DurationInHours => PullConfigurationValueFromSource<int>();
     }
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -126,10 +126,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfygureOut.ConfigRSource\ConfygureOut.ConfigRSource.csproj">
-      <Project>{e179c5b6-ec5d-4c13-82e3-9c62097d27bd}</Project>
-      <Name>ConfygureOut.ConfigRSource</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ConfygureOut.Sources.EnvironmentVariableSource\ConfygureOut.Sources.EnvironmentVariableSource.csproj">
       <Project>{0556b42d-a171-4d06-8598-629c23f19676}</Project>
       <Name>ConfygureOut.Sources.EnvironmentVariableSource</Name>
@@ -137,6 +133,10 @@
     <ProjectReference Include="..\ConfygureOut\ConfygureOut.csproj">
       <Project>{a1fa36f0-8eae-4eff-ab86-394ef243b564}</Project>
       <Name>ConfygureOut</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfygureOut.Sources.ConfigRSource\ConfygureOut.Sources.ConfigRSource.csproj">
+      <Project>{E179C5B6-EC5D-4C13-82E3-9C62097D27BD}</Project>
+      <Name>ConfygureOut.Sources.ConfigRSource</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
