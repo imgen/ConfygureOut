@@ -49,7 +49,8 @@ namespace ConfygureOut
         {
             foreach (var (_, configurationSourceSetting) in _configurationSourceRegistration)
             {
-                await configurationSourceSetting.Source.PushConfiguration(target);
+                await configurationSourceSetting.Source.PushConfiguration(target)
+                                                .ConfigureAwait(false);
             }
 
             return target;
@@ -70,8 +71,8 @@ namespace ConfygureOut
                 return;
             }
 
-            await Task.Delay(setting.RefreshInterval.Value);
-            await PullConfigurationsFromSource(setting.Source, target);
+            await Task.Delay(setting.RefreshInterval.Value).ConfigureAwait(false);
+            await PullConfigurationsFromSource(setting.Source, target).ConfigureAwait(false);
             AutoRefreshConfiguration(setting, target);
         }
 
