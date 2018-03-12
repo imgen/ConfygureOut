@@ -1,2 +1,2 @@
 ﻿Config.ApiUrl = "https://webby.com";
-Config.MaxRetryTimes = 3;
+Config.MaxRetryTimes = 4;

@@ -15,7 +15,7 @@ namespace ConfygureOut.Examples
             var appSettingsSource = new AppSettingsSource(nameof(ConfigSourceNames.AppSettings));
             var configManager = new ConfigurationManager<MyConfig>();
             configManager.RegisterConfigurationSources(
-                (configRSource, TimeSpan.FromSeconds(5)), 
+                (configRSource, TimeSpan.FromSeconds(10)), 
                 (environmentVariableSource, null),
                 (appSettingsSource, null));
             
@@ -29,7 +29,7 @@ namespace ConfygureOut.Examples
 
             configManager.StartAutoRefresh(configuration);
 
-            Thread.Sleep(TimeSpan.FromSeconds(300));
+            Thread.Sleep(TimeSpan.FromSeconds(30));
 
             configManager.StopAutoRefresh();
 
