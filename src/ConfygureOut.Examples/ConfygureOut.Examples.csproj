@@ -138,6 +138,10 @@
       <Project>{E179C5B6-EC5D-4C13-82E3-9C62097D27BD}</Project>
       <Name>ConfygureOut.Sources.ConfigRSource</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfygureOut.Sources.AppSettingsSource\ConfygureOut.Sources.AppSettingsSource.csproj">
+      <Project>{99FAF426-71FB-4BE2-BB0F-B784E2F077DB}</Project>
+      <Name>ConfygureOut.Sources.AppSettingsSource</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

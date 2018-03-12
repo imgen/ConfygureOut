@@ -72,6 +72,7 @@ namespace ConfygureOut
 
             await Task.Delay(setting.RefreshInterval.Value);
             await PullConfigurationsFromSource(setting.Source, target);
+            AutoRefreshConfiguration(setting, target);
         }
 
         public object PullConfigurationValueFromSource(PropertyInfo property)
