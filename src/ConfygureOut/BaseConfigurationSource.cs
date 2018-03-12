@@ -9,7 +9,7 @@ namespace ConfygureOut
     {
         public string Name { get; set; }
 
-        public bool SupportsHotLoad { get; } = false;
+        public virtual bool SupportsHotLoad { get; } = false;
 
         protected BaseConfigurationSource(string name)
         {
