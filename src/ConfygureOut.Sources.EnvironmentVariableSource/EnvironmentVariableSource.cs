@@ -6,9 +6,9 @@ namespace ConfygureOut.Sources
     {
         private readonly string _environmentVariableKeyPrefix;
 
-        public override bool SupportsHotLoad => true;
-
-        public EnvironmentVariableSource(string name, string environmentVariableKeyPrefix = null): base(name)
+        public EnvironmentVariableSource(string name, 
+             string environmentVariableKeyPrefix = null)
+            : base(name, supportsHotLoad: true)
         {
             _environmentVariableKeyPrefix = environmentVariableKeyPrefix;
         }

@@ -9,11 +9,12 @@ namespace ConfygureOut
     {
         public string Name { get; set; }
 
-        public virtual bool SupportsHotLoad { get; } = false;
+        public bool SupportsHotLoad { get; }
 
-        protected BaseConfigurationSource(string name)
+        protected BaseConfigurationSource(string name, bool supportsHotLoad)
         {
             Name = name;
+            SupportsHotLoad = supportsHotLoad;
         }
 
         public async Task PushConfiguration(IConfiguration configuration)
