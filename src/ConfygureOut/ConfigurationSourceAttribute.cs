@@ -2,6 +2,7 @@
 
 namespace ConfygureOut
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class ConfigurationSourceAttribute: Attribute
     {
         public string Name { get; set; }
