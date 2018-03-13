@@ -9,18 +9,16 @@ namespace ConfygureOut.Examples
     {
         public static void Main(string[] args)
         {
-            var configRSource = new ConfigRSource(nameof(ConfigSourceNames.ConfigR), "config.csx");
-            var environmentVariableSource = new EnvironmentVariableSource(nameof(ConfigSourceNames.EnvironmentVariable),
-                "CONFYGURE_OUT_");
-            var appSettingsSource = new AppSettingsSource(nameof(ConfigSourceNames.AppSettings));
+            var configRSource = new ConfigRSource();
+            var environmentVariableSource = new EnvironmentVariableSource("CONFYGURE_OUT_");
+            var appSettingsSource = new AppSettingsSource();
             var configManager = new ConfigurationManager<MyConfig>();
             configManager.RegisterConfigurationSources(
                 (configRSource, TimeSpan.FromSeconds(10)), 
                 (environmentVariableSource, null),
                 (appSettingsSource, null));
             
-            var configuration = configManager.PullConfigurationsFromAllSources().Result;
-            configuration.Manager = configManager;
+            var configuration = configManager.PullConfigurationsFromAllSources(new MyConfig(configManager)).Result;
             WriteLine($"ApiUrl is {configuration.ApiUrl}");
             WriteLine($"MaxRetryTimes is {configuration.MaxRetryTimes}");
             WriteLine($"DbConnectionString is {configuration.DbConnectionString}");
@@ -39,9 +37,14 @@ namespace ConfygureOut.Examples
 
     public class MyConfig: BaseConfiguration<MyConfig>
     {
-        [ConfigurationSource(nameof(ConfigSourceNames.ConfigR))]
+        public MyConfig() { }
+
+        public MyConfig(ConfigurationManager<MyConfig> manager)
+        {
+            Manager = manager;
+        }
+
         public string ApiUrl { get; set; }
-        [ConfigurationSource(nameof(ConfigSourceNames.ConfigR))]
         public int MaxRetryTimes { get; set; }
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),

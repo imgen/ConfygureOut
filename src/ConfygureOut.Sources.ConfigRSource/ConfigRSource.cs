@@ -10,7 +10,7 @@ namespace ConfygureOut.Sources
         private readonly string _configFilePath;
         private IDictionary<string, object> _configurations;
 
-        public ConfigRSource(string name, string configFilePath): base(name, supportsHotLoad: false)
+        public ConfigRSource(string configFilePath = "config.csx", string name = "ConfigR"): base(name, supportsHotLoad: false)
         {
             _configFilePath = configFilePath;
         }

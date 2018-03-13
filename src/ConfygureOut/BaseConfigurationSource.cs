@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -17,10 +18,9 @@ namespace ConfygureOut
             SupportsHotLoad = supportsHotLoad;
         }
 
-        public async Task PushConfiguration(IConfiguration configuration)
+        public async Task PushConfiguration(IConfiguration configuration, IEnumerable<PropertyInfo> properties)
         {
             await LoadConfigurations();
-            var properties = configuration.GetConfigPropertiesBySourceName(Name);
             foreach (var property in properties.Where(x => x.CanWrite))
             {
                 PushToProperty(configuration, property, property.GetCustomAttribute<ConfigurationSourceAttribute>());
@@ -36,7 +36,7 @@ namespace ConfygureOut
             PropertyInfo property,
             ConfigurationSourceAttribute configSourceAttr)
         {
-            var key = configSourceAttr.Key ?? property.Name;
+            var key = configSourceAttr?.Key ?? property.Name;
             var value = GetConfigurationValue(key, property.DeclaringType);
             if (property.CanWrite)
             {

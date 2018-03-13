@@ -178,13 +178,18 @@ namespace ConfygureOut
             return default(TValue);
         }
 
-        public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute<TAttr>(this Type type, Func<TAttr, bool> checker = null)
+        public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute<TAttr>(this Type type, 
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance, 
+            Func<TAttr, bool> checker = null)
             where TAttr: Attribute
         {
-            return type.GetPropertiesWithAttribute(typeof(TAttr), attr => checker?.Invoke(attr as TAttr) ?? true);
+            return type.GetPropertiesWithAttribute(typeof(TAttr), bindingFlags, attr => checker?.Invoke(attr as TAttr) ?? true);
         }
 
-        public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute(this Type type, Type attrType, Func<Attribute, bool> checker = null)
+        public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute(this Type type,
+            Type attrType,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance,
+            Func<Attribute, bool> checker = null)
         {
             return type.GetProperties()
                             .Where(x => x.GetCustomAttributes(true)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using TupleExtensions;
@@ -9,18 +10,20 @@ namespace ConfygureOut
     public class ConfigurationManager<TConfig>
         where TConfig : class, IConfiguration, new()
     {
+        private readonly string _defaultSourceName;
+        protected string DefaultSourceName => _defaultSourceName ?? _configurationSourceRegistration.Keys.First();
+
         private readonly Dictionary<string, ConfigurationSourceSetting> _configurationSourceRegistration =
             new Dictionary<string, ConfigurationSourceSetting>();
 
+        public ConfigurationManager(string defaultSourceName = null)
+        {
+            _defaultSourceName = defaultSourceName;
+        }
+
         public void RegisterConfigurationSources(params BaseConfigurationSource[] sources)
         {
-            foreach (var source in sources)
-            {
-                _configurationSourceRegistration[source.Name] = new ConfigurationSourceSetting
-                {
-                    Source = source
-                };
-            }
+            RegisterConfigurationSources(sources.Select(x => (x, (TimeSpan?)null)).ToArray());
         }
 
         public void RegisterConfigurationSources(params (BaseConfigurationSource source, TimeSpan? refreshInterval)[] sources)
@@ -37,7 +40,15 @@ namespace ConfygureOut
 
         public Task PullConfigurationsFromSource(BaseConfigurationSource source, IConfiguration target)
         {
-            return source.PushConfiguration(target);
+            var properties = target.GetConfigPropertiesBySourceName(source.Name);
+            var type = target.GetType();
+            if (source.Name == DefaultSourceName)
+            {
+                properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Except(type.GetPropertiesWithAttribute<ConfigurationSourceAttribute>())
+                    .PrependAll(properties.ToArray());
+            }
+            return source.PushConfiguration(target, properties);
         }
 
         public Task<TConfig> PullConfigurationsFromAllSources()
@@ -49,7 +60,7 @@ namespace ConfygureOut
         {
             foreach (var (_, configurationSourceSetting) in _configurationSourceRegistration)
             {
-                await configurationSourceSetting.Source.PushConfiguration(target)
+                await PullConfigurationsFromSource(configurationSourceSetting.Source, target)
                                                 .ConfigureAwait(false);
             }
 
@@ -79,14 +90,15 @@ namespace ConfygureOut
         public object PullConfigurationValueFromSource(PropertyInfo property)
         {
             var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
-            var sourceName = configurationSourceAttr.Name;
+            var sourceName = configurationSourceAttr?.Name?? DefaultSourceName;
             if (!_configurationSourceRegistration.ContainsKey(sourceName))
             {
                 return null;
             }
             var source = _configurationSourceRegistration[sourceName].Source;
+            var configurationKey = configurationSourceAttr?.Key?? property.Name;
             return !source.SupportsHotLoad ? null : 
-                source.GetConfigurationValue(configurationSourceAttr.Key?? property.Name, property.PropertyType);
+                source.GetConfigurationValue(configurationKey, property.PropertyType);
         }
 
         public void StartAutoRefresh(string sourceName, TConfig target)
