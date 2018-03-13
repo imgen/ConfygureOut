@@ -55,6 +55,11 @@ namespace ConfygureOut
             return string.IsNullOrEmpty(s) ? null : s;
         }
 
+        public static bool IsHttpUrl(this string s)
+        {
+            return s.StartsWith("http", StringComparison.InvariantCultureIgnoreCase);
+        }
+
         public static bool IsNull(this object obj) => obj == null;
 
         public static bool IsNotNull(this object obj) => obj != null;

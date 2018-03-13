@@ -16,6 +16,10 @@ namespace ConfygureOut.Sources
         public ConfigRSource(string configFilePath = "./config.csx", string name = "ConfigR"): base(name, supportsHotLoad: false)
         {
             _configFilePath = configFilePath;
+            if (!_configFilePath.IsHttpUrl())
+            {
+                return;
+            }
             var directory = Path.GetDirectoryName(configFilePath);
             var fileName = Path.GetFileName(configFilePath);
             _watcher = new FileSystemWatcher
