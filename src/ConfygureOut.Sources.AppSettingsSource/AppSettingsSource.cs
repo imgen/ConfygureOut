@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System;
+using System.Configuration;
 
 namespace ConfygureOut.Sources
 {
@@ -9,7 +10,7 @@ namespace ConfygureOut.Sources
 
         public override object GetConfigurationValue(string key, Type propertyType)
         {
-            var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+            var appSettings = ConfigurationManager.AppSettings;
             return appSettings.AllKeys.Contains(key) ? appSettings[key] : null;
         }
     }

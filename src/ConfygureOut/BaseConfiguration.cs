@@ -6,6 +6,7 @@ namespace ConfygureOut
     public class BaseConfiguration<TConfig>: IConfiguration
         where TConfig: class, IConfiguration, new()
     {
+        [NonConfigurable]
         public ConfigurationManager<TConfig> Manager { get; set; }
 
         public object PullConfigurationValueFromSource(PropertyInfo property)

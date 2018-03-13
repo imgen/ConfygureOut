@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading;
 using ConfygureOut.Sources;
 using static System.Console;
-using System.Threading;
 
 namespace ConfygureOut.Examples
 {
@@ -14,9 +14,9 @@ namespace ConfygureOut.Examples
             var appSettingsSource = new AppSettingsSource();
             var configManager = new ConfigurationManager<MyConfig>();
             configManager.RegisterConfigurationSources(
-                (configRSource, TimeSpan.FromSeconds(10)), 
-                (environmentVariableSource, null),
-                (appSettingsSource, null));
+                configRSource, 
+                environmentVariableSource,
+                appSettingsSource);
             
             var configuration = configManager.PullConfigurationsFromAllSources(new MyConfig(configManager)).Result;
             WriteLine($"ApiUrl is {configuration.ApiUrl}");
@@ -25,13 +25,7 @@ namespace ConfygureOut.Examples
             WriteLine($"DurationInHours is {configuration.DurationInHours}");
             WriteLine($"WhosWho is {configuration.WhosWho}");
 
-            configManager.StartAutoRefresh(configuration);
-
-            Thread.Sleep(TimeSpan.FromSeconds(30));
-
-            configManager.StopAutoRefresh();
-
-            Thread.Sleep(TimeSpan.FromSeconds(30));
+            Thread.Sleep(TimeSpan.FromSeconds(100));
         }
     }
 

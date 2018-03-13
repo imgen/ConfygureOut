@@ -46,8 +46,10 @@ namespace ConfygureOut
             {
                 properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Except(type.GetPropertiesWithAttribute<ConfigurationSourceAttribute>())
+                    .Except(type.GetPropertiesWithAttribute<NonConfigurableAttribute>())
                     .PrependAll(properties.ToArray());
             }
+
             return source.PushConfiguration(target, properties);
         }
 
