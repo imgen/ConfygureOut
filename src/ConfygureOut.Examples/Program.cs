@@ -9,33 +9,29 @@ namespace ConfygureOut.Examples
     {
         public static void Main(string[] args)
         {
-            var configRSource = new ConfigRSource();
-            var environmentVariableSource = new EnvironmentVariableSource("CONFYGURE_OUT_");
-            var appSettingsSource = new AppSettingsSource();
-            var configManager = new ConfigurationManager<MyConfig>();
-            configManager.RegisterConfigurationSources(
-                configRSource, 
-                environmentVariableSource,
-                appSettingsSource);
-            
-            var configuration = configManager.PullConfigurationsFromAllSources(new MyConfig(configManager)).Result;
+            var configuration = new MyConfig();
+            configuration.PullConfigurationsFromAllSources().Wait();
             WriteLine($"ApiUrl is {configuration.ApiUrl}");
             WriteLine($"MaxRetryTimes is {configuration.MaxRetryTimes}");
             WriteLine($"DbConnectionString is {configuration.DbConnectionString}");
             WriteLine($"DurationInHours is {configuration.DurationInHours}");
             WriteLine($"WhosWho is {configuration.WhosWho}");
-
-            Thread.Sleep(TimeSpan.FromSeconds(100));
+            ReadKey();
         }
     }
 
-    public class MyConfig: BaseConfiguration<MyConfig>
+    public class MyConfig: BaseConfiguration
     {
-        public MyConfig() { }
-
-        public MyConfig(ConfigurationManager<MyConfig> manager)
+        public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.ConfigR))
         {
-            Manager = manager;
+            var configRSource = new ConfigRSource();
+            var environmentVariableSource = new EnvironmentVariableSource("CONFYGURE_OUT_");
+            var appSettingsSource = new AppSettingsSource();
+
+            RegisterConfigurationSources(
+                configRSource,
+                environmentVariableSource,
+                appSettingsSource);
         }
 
         public string ApiUrl { get; set; }
