@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using ConfygureOut.Sources;
+﻿using ConfygureOut.Sources;
 using static System.Console;
 
 namespace ConfygureOut.Examples
