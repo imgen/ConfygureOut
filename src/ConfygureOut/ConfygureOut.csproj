@@ -3,6 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DebugType>full</DebugType>
+    <Authors>imgen</Authors>
+    <Company>C &amp; R Holdings LTD</Company>
+    <Description>A configuration framework to mix configurations from different sources together</Description>
+    <Copyright></Copyright>
+    <PackageLicenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/imgen/ConfygureOut</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
+    <PackageTags>configuration</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
