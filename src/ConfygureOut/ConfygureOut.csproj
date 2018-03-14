@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/imgen/ConfygureOut</PackageProjectUrl>
     <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
     <PackageTags>configuration</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
