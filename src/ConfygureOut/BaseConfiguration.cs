@@ -10,8 +10,13 @@ namespace ConfygureOut
 {
     public class BaseConfiguration: IConfiguration
     {
-        private readonly string _defaultSourceName;
-        protected string DefaultSourceName => _defaultSourceName ?? _configurationSourceRegistration.Keys.First();
+        private string _defaultSourceName;
+
+        protected string DefaultSourceName
+        {
+            get => _defaultSourceName ?? _configurationSourceRegistration.Keys.First();
+            set => _defaultSourceName = value;
+        }
 
         private readonly Dictionary<string, ConfigurationSourceSetting> _configurationSourceRegistration =
             new Dictionary<string, ConfigurationSourceSetting>();
