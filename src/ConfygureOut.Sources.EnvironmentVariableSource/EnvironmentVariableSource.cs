@@ -22,7 +22,7 @@ namespace ConfygureOut.Sources
             object value = stringValue;
             if (stringValue.IsNullOrEmpty())
             {
-                value = propertyType.GetDefaultValue();
+                return ConfigurationValueNotFound.Instance;
             }
             else if (propertyType == typeof(int))
             {

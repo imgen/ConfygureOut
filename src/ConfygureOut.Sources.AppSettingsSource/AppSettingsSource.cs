@@ -11,7 +11,8 @@ namespace ConfygureOut.Sources
         public override object GetConfigurationValue(string key, Type propertyType)
         {
             var appSettings = ConfigurationManager.AppSettings;
-            return appSettings.AllKeys.Contains(key) ? appSettings[key] : null;
+            return appSettings.AllKeys.Contains(key) ? appSettings[key] : 
+                              (object) ConfigurationValueNotFound.Instance;
         }
     }
 }

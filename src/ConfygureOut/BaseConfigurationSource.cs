@@ -50,7 +50,7 @@ namespace ConfygureOut
         {
             var key = configSourceAttr?.Key ?? property.Name;
             var value = GetConfigurationValue(key, property.DeclaringType);
-            if (property.CanWrite)
+            if (property.CanWrite && value != ConfigurationValueNotFound.Instance)
             {
                 property.SetValue(target, value);
             }

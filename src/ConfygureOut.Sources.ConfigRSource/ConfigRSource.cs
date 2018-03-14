@@ -53,7 +53,7 @@ namespace ConfygureOut.Sources
         {
             return _configurations.ContainsKey(key)
                 ? _configurations[key]
-                : propertyType.GetDefaultValue();
+              : ConfigurationValueNotFound.Instance;
         }
     }
 }
