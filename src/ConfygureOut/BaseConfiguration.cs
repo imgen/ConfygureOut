@@ -43,14 +43,34 @@ namespace ConfygureOut
             }
         }
 
-        public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
+        public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null, object defaultValue = null)
         {
-            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
+            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName), defaultValue);
         }
 
-        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
+        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null, T defaultValue = default(T))
         {
-            return (T)PullConfigurationValueFromSource(propertyName);
+            return (T)PullConfigurationValueFromSource(propertyName, defaultValue);
+        }
+
+        public object PullConfigurationValueFromSource(PropertyInfo property, object defaultValue = null)
+        {
+            var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
+            var sourceName = configurationSourceAttr?.Name ?? DefaultSourceName;
+            var defaultReturnValue = defaultValue ?? ConfigurationValueNotFound.Instance;
+            if (!_configurationSourceRegistration.ContainsKey(sourceName))
+            {
+                return defaultReturnValue;
+            }
+            var source = _configurationSourceRegistration[sourceName].Source;
+            var configurationKey = configurationSourceAttr?.Key ?? property.Name;
+            if (!source.SupportsHotLoad)
+            {
+                return defaultReturnValue;
+            }
+
+            var value = source.GetConfigurationValue(configurationKey, property.PropertyType);
+            return value == ConfigurationValueNotFound.Instance? defaultReturnValue : value;
         }
 
         public Task PullConfigurationsFromSource(BaseConfigurationSource source)
@@ -95,20 +115,6 @@ namespace ConfygureOut
             await Task.Delay(setting.RefreshInterval.Value).ConfigureAwait(false);
             await PullConfigurationsFromSource(setting.Source).ConfigureAwait(false);
             AutoRefreshConfiguration(setting);
-        }
-
-        public object PullConfigurationValueFromSource(PropertyInfo property)
-        {
-            var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
-            var sourceName = configurationSourceAttr?.Name?? DefaultSourceName;
-            if (!_configurationSourceRegistration.ContainsKey(sourceName))
-            {
-                return null;
-            }
-            var source = _configurationSourceRegistration[sourceName].Source;
-            var configurationKey = configurationSourceAttr?.Key?? property.Name;
-            return !source.SupportsHotLoad ? ConfigurationValueNotFound.Instance : 
-                source.GetConfigurationValue(configurationKey, property.PropertyType);
         }
 
         public void StartAutoRefresh(string sourceName)
