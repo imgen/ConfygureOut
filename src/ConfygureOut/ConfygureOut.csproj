@@ -12,6 +12,8 @@
     <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
     <PackageTags>configuration</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Better handling for the value that is not found in the configuration source</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

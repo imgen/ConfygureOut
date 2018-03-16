@@ -107,7 +107,7 @@ namespace ConfygureOut
             }
             var source = _configurationSourceRegistration[sourceName].Source;
             var configurationKey = configurationSourceAttr?.Key?? property.Name;
-            return !source.SupportsHotLoad ? null : 
+            return !source.SupportsHotLoad ? ConfigurationValueNotFound.Instance : 
                 source.GetConfigurationValue(configurationKey, property.PropertyType);
         }
 
