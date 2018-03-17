@@ -43,17 +43,22 @@ namespace ConfygureOut
             }
         }
 
-        public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null, object defaultValue = null)
+        public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
-            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName), defaultValue);
+            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
         }
 
-        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null, T defaultValue = default(T))
+        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
         {
-            return (T)PullConfigurationValueFromSource(propertyName, defaultValue);
+            return (T)PullConfigurationValueFromSource(propertyName);
         }
 
-        public object PullConfigurationValueFromSource(PropertyInfo property, object defaultValue = null)
+        public object PullConfigurationValueFromSource(PropertyInfo property)
+        {
+            return PullConfigurationValueFromSource(property, ConfigurationValueNotFound.Instance);
+        }
+
+        public object PullConfigurationValueFromSource(PropertyInfo property, object defaultValue)
         {
             var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
             var sourceName = configurationSourceAttr?.Name ?? DefaultSourceName;
