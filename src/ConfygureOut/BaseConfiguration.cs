@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -43,22 +44,43 @@ namespace ConfygureOut
             }
         }
 
-        public object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
+        private string GetCallingMemberName(int stackLevel = 1)
+        {
+            var callStackTrace = new StackTrace();
+            var propertyFrame = callStackTrace.GetFrame(stackLevel); // 1: below GetPropertyName frame
+            string properyAccessorName = propertyFrame.GetMethod().Name;
+
+            return properyAccessorName.Replace("get_", "").Replace("set_", "");
+        }
+
+        protected object PullConfigurationValueFromSourceWithDefault(object defaultValue)
+        {
+            return PullConfigurationValueFromSourceWithDefault(
+                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), defaultValue);
+        }
+
+        protected object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
             return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
         }
 
-        public T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
+        protected T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
         {
             return (T)PullConfigurationValueFromSource(propertyName);
         }
 
-        public object PullConfigurationValueFromSource(PropertyInfo property)
+        protected T PullConfigurationValueFromSourceWithDefault<T>(T defaultValue)
         {
-            return PullConfigurationValueFromSource(property, ConfigurationValueNotFound.Instance);
+            return (T)PullConfigurationValueFromSourceWithDefault(
+                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), defaultValue);
         }
 
-        public object PullConfigurationValueFromSource(PropertyInfo property, object defaultValue)
+        public object PullConfigurationValueFromSource(PropertyInfo property)
+        {
+            return PullConfigurationValueFromSourceWithDefault(property, ConfigurationValueNotFound.Instance);
+        }
+
+        public object PullConfigurationValueFromSourceWithDefault(PropertyInfo property, object defaultValue)
         {
             var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
             var sourceName = configurationSourceAttr?.Name ?? DefaultSourceName;

@@ -14,6 +14,7 @@ namespace ConfygureOut.Examples
             WriteLine($"DbConnectionString is {configuration.DbConnectionString}");
             WriteLine($"DurationInHours is {configuration.DurationInHours}");
             WriteLine($"WhosWho is {configuration.WhosWho}");
+            WriteLine($"Me is {configuration.Me}");
             ReadKey();
         }
     }
@@ -37,14 +38,17 @@ namespace ConfygureOut.Examples
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DB_CONNECTION_STRING", IsSensitive = true)]
-        public string DbConnectionString => PullConfigurationValueFromSource<string>();
+        public string DbConnectionString => PullConfigurationValueFromSourceWithDefault<string>("Not connected to DB");
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DURATION_HOURS")]
-        public int DurationInHours => PullConfigurationValueFromSource<int>();
+        public int DurationInHours => PullConfigurationValueFromSourceWithDefault<int>(4);
 
         [ConfigurationSource(nameof(ConfigSourceNames.AppSettings))]
-        public string WhosWho => PullConfigurationValueFromSource<string>();
+        public string WhosWho => PullConfigurationValueFromSourceWithDefault<string>("Me");
+
+        [ConfigurationSource(nameof(ConfigSourceNames.AppSettings))]
+        public string Me => PullConfigurationValueFromSourceWithDefault<string>("I am me");
     }
 
     public enum ConfigSourceNames
