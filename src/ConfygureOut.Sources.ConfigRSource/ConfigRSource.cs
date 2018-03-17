@@ -13,10 +13,12 @@ namespace ConfygureOut.Sources
         // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly FileSystemWatcher _watcher;
 
-        public ConfigRSource(string configFilePath = "./config.csx", string name = "ConfigR"): base(name, supportsHotLoad: false)
+        public ConfigRSource(string configFilePath = "./config.csx",
+            bool autoReloadOnFileChange = false,
+            string name = "ConfigR"): base(name, supportsHotLoad: false)
         {
             _configFilePath = configFilePath;
-            if (!_configFilePath.IsHttpUrl())
+            if (!_configFilePath.IsHttpUrl() || !autoReloadOnFileChange)
             {
                 return;
             }

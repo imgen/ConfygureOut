@@ -23,7 +23,7 @@ namespace ConfygureOut.Examples
     {
         public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.ConfigR))
         {
-            var configRSource = new ConfigRSource();
+            var configRSource = new ConfigRSource(autoReloadOnFileChange: true);
             var environmentVariableSource = new EnvironmentVariableSource("CONFYGURE_OUT_");
             var appSettingsSource = new AppSettingsSource();
 
