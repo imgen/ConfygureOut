@@ -59,6 +59,12 @@ namespace ConfygureOut
                 GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), defaultValue);
         }
 
+        public object PullConfigurationValueFromSourceWithDefault(string propertyName, object defaultValue)
+        {
+            return PullConfigurationValueFromSourceWithDefault(
+                GetType().GetProperty(propertyName), defaultValue);
+        }
+
         protected object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
             return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
@@ -67,6 +73,12 @@ namespace ConfygureOut
         protected T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
         {
             return (T)PullConfigurationValueFromSource(propertyName);
+        }
+
+        public T PullConfigurationValueFromSourceWithDefault<T>(string propertyName, T defaultValue)
+        {
+            return (T)PullConfigurationValueFromSourceWithDefault(
+                GetType().GetProperty(propertyName), defaultValue);
         }
 
         protected T PullConfigurationValueFromSourceWithDefault<T>(T defaultValue)
