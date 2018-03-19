@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ConfygureOut.ConfigRSource</id>
+    <version>1.0.0</version>
+    <authors>imgen</authors>
+    <owners>imgen</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/imgen/ConfygureOut</projectUrl>
+    <description>A configuration source for ConfygureOut that loads configuration values from ConfigR files</description>
+    <releaseNotes></releaseNotes>
+    <tags>configuration</tags>
+    <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
+	<dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="ConfygureOut" version="1.0.2" />
+      </group>
+	  <group targetFramework="net461">
+		<dependency id="ConfigR" version="1.0.0" />
+		<dependency id="ConfigR.Roslyn.CSharp" version="1.0.0" />
+		<dependency id="Microsoft.CodeAnalysis.Analyzers" version="2.6.0" exclude="Build" />
+		<dependency id="Microsoft.CodeAnalysis.Common" version="1.2.1" />
+		<dependency id="Microsoft.CodeAnalysis.CSharp" version="1.2.1" />
+		<dependency id="Microsoft.CodeAnalysis.CSharp.Scripting" version="1.2.1" />
+		<dependency id="Microsoft.CodeAnalysis.Scripting.Common" version="1.2.1" />
+		<dependency id="System.AppContext" version="4.3.0" />
+		<dependency id="System.Collections" version="4.3.0" />
+		<dependency id="System.Collections.Immutable" version="1.4.0" />
+		<dependency id="System.Diagnostics.Debug" version="4.3.0" />
+		<dependency id="System.Diagnostics.StackTrace" version="4.3.0" />
+		<dependency id="System.Diagnostics.Tools" version="4.3.0" />
+		<dependency id="System.Globalization" version="4.3.0" />
+		<dependency id="System.IO" version="4.3.0" />
+		<dependency id="System.IO.FileSystem" version="4.3.0" />
+		<dependency id="System.IO.FileSystem.Primitives" version="4.3.0" />
+		<dependency id="System.Linq" version="4.3.0" />
+		<dependency id="System.Linq.Expressions" version="4.3.0" />
+		<dependency id="System.Reflection" version="4.3.0" />
+		<dependency id="System.Reflection.Extensions" version="4.3.0" />
+		<dependency id="System.Reflection.Metadata" version="1.5.0" />
+		<dependency id="System.Resources.ResourceManager" version="4.3.0" />
+		<dependency id="System.Runtime" version="4.3.0" />
+		<dependency id="System.Runtime.Extensions" version="4.3.0" />
+		<dependency id="System.Runtime.Handles" version="4.3.0" />
+		<dependency id="System.Runtime.InteropServices" version="4.3.0" />
+		<dependency id="System.Text.Encoding" version="4.3.0" />
+		<dependency id="System.Threading" version="4.3.0" />
+		<dependency id="System.Threading.Tasks" version="4.3.0" />
+	  </group>
+    </dependencies>
+  </metadata>
+</package>

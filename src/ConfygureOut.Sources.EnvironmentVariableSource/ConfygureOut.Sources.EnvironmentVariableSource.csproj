@@ -51,5 +51,9 @@
       <Name>ConfygureOut</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ConfygureOut.Sources.EnvironmentVariableSource.nuspec" />
+    <None Include="PublishToNuget.cmd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

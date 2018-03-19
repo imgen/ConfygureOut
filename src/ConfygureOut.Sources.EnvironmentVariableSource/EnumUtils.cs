@@ -2,7 +2,7 @@
 
 namespace ConfygureOut.Sources
 {
-    public static class EnumUtils
+    internal static class EnumUtils
     {
         public static TEnum[] GetValues<TEnum>()
             where TEnum : struct

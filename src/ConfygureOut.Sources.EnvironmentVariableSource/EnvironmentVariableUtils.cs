@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ConfygureOut.Sources
 {
-    public static class EnvironmentVariableUtils
+    internal static class EnvironmentVariableUtils
     {
         public static string GetEnvironmentVariable(this string key, string prefix = null)
         {
