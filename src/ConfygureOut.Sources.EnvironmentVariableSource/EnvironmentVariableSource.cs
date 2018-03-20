@@ -24,7 +24,7 @@ namespace ConfygureOut.Sources
             {
                 return ConfigurationValueNotFound.Instance;
             }
-            else if (propertyType == typeof(int))
+            if (propertyType == typeof(int))
             {
                 value = int.Parse(stringValue);
             }
