@@ -33,17 +33,17 @@ namespace ConfygureOut.Examples
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DB_CONNECTION_STRING", IsSensitive = true)]
-        public string DbConnectionString => PullConfigurationValueFromSourceWithDefault<string>("Not connected to DB");
+        public string DbConnectionString => PullConfigurationValueFromSourceWithDefault("Not connected to DB");
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
             "DURATION_HOURS")]
-        public int DurationInHours => PullConfigurationValueFromSourceWithDefault<int>(4);
+        public int DurationInHours => PullConfigurationValueFromSourceWithDefault(4);
 
         [ConfigurationSource(nameof(ConfigSourceNames.AppSettings))]
-        public string WhosWho => PullConfigurationValueFromSourceWithDefault<string>("Me");
+        public string WhosWho => PullConfigurationValueFromSourceWithDefault("Me");
 
         [ConfigurationSource(nameof(ConfigSourceNames.AppSettings))]
-        public string Me => PullConfigurationValueFromSourceWithDefault<string>("I am me");
+        public string Me => PullConfigurationValueFromSourceWithDefault("I am me");
     }
 
     public enum ConfigSourceNames

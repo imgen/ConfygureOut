@@ -42,14 +42,15 @@ namespace ConfygureOut
                     RefreshInterval = refreshInterval
                 };
             }
+
             return this;
         }
 
-        private string GetCallingMemberName(int stackLevel = 1)
+        private static string GetCallingMemberName(int stackLevel = 1)
         {
             var callStackTrace = new StackTrace();
             var propertyFrame = callStackTrace.GetFrame(stackLevel); // 1: below GetPropertyName frame
-            string properyAccessorName = propertyFrame.GetMethod().Name;
+            var properyAccessorName = propertyFrame.GetMethod().Name;
 
             return properyAccessorName.Replace("get_", "").Replace("set_", "");
         }
@@ -137,69 +138,79 @@ namespace ConfygureOut
             }
         }
 
-        public void StartAutoRefresh()
+        public BaseConfiguration StartAutoRefresh()
         {
             foreach(var (name, _) in _configurationSourceRegistration)
             {
                 StartAutoRefresh(name);
             }
+            return this;
         }
 
-        private async void AutoRefreshConfiguration(ConfigurationSourceSetting setting)
+        private async Task AutoRefreshConfiguration(ConfigurationSourceSetting setting)
         {
-            if (setting.RefreshInterval == null || setting.AutoRefreshState == AutoRefreshState.Stopped)
+            while (true)
             {
-                return;
-            }
+                if (setting.RefreshInterval == null || setting.AutoRefreshState == AutoRefreshState.Stopped)
+                {
+                    return;
+                }
 
-            await Task.Delay(setting.RefreshInterval.Value).ConfigureAwait(false);
-            await PullConfigurationsFromSource(setting.Source).ConfigureAwait(false);
-            AutoRefreshConfiguration(setting);
+                await Task.Delay(setting.RefreshInterval.Value).ConfigureAwait(false);
+                await PullConfigurationsFromSource(setting.Source).ConfigureAwait(false);
+            }
         }
 
-        public void StartAutoRefresh(string sourceName)
+        public BaseConfiguration StartAutoRefresh(string sourceName)
         {
             if (!_configurationSourceRegistration.ContainsKey(sourceName))
             {
-                return;
+                return this;
             }
 
             var setting = _configurationSourceRegistration[sourceName];
             if (setting.AutoRefreshState == AutoRefreshState.Running)
             {
-                return;
+                return this;
             }
             setting.AutoRefreshState = AutoRefreshState.Running;
+#pragma warning disable 4014
             AutoRefreshConfiguration(setting);
+#pragma warning restore 4014
+            return this;
         }
 
-        public void StartAutoRefresh(BaseConfigurationSource source)
+        public BaseConfiguration StartAutoRefresh(BaseConfigurationSource source)
         {
-            StartAutoRefresh(source.Name);
+            return StartAutoRefresh(source.Name);
         }
 
-        public void StopAutoRefresh()
+        public BaseConfiguration StopAutoRefresh()
         {
             foreach (var (name, _) in _configurationSourceRegistration)
             {
                 StopAutoRefresh(name);
             }
+
+            return this;
         }
 
-        public void StopAutoRefresh(string sourceName)
+        public BaseConfiguration StopAutoRefresh(string sourceName)
         {
             if (!_configurationSourceRegistration.ContainsKey(sourceName))
             {
-                return;
+                return this;
             }
 
             var setting = _configurationSourceRegistration[sourceName];
             setting.AutoRefreshState = AutoRefreshState.Stopped;
+            return this;
         }
 
-        public void StopAutoRefresh(BaseConfigurationSource source)
+        public BaseConfiguration StopAutoRefresh(BaseConfigurationSource source)
         {
             StopAutoRefresh(source.Name);
+            return this;
         }
     }
 }
