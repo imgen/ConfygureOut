@@ -23,14 +23,9 @@ namespace ConfygureOut.Examples
     {
         public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.ConfigR))
         {
-            var configRSource = new ConfigRSource(autoReloadOnFileChange: true);
-            var environmentVariableSource = new EnvironmentVariableSource("CONFYGURE_OUT_");
-            var appSettingsSource = new AppSettingsSource();
-
-            RegisterConfigurationSources(
-                configRSource,
-                environmentVariableSource,
-                appSettingsSource);
+            this.UseAppSettings()
+                .UseConfigR(autoReloadOnFileChange: true)
+                .UseEnvironmentVariable("CONFYGURE_OUT_");
         }
 
         public string ApiUrl { get; set; }

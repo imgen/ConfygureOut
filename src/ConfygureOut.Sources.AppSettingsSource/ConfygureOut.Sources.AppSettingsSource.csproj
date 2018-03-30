@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="AppSettingsSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AppSettingsUseExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConfygureOut\ConfygureOut.csproj">

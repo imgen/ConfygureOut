@@ -8,8 +8,8 @@ namespace ConfygureOut.Sources
 
         public EnvironmentVariableSource( 
              string environmentVariableKeyPrefix = null,
-             string name = "EnvironmentVariable")
-            : base(name, supportsHotLoad: true)
+                                         string name = null)
+            : base(name?? "EnvironmentVariable", supportsHotLoad: true)
         {
             _environmentVariableKeyPrefix = environmentVariableKeyPrefix;
         }

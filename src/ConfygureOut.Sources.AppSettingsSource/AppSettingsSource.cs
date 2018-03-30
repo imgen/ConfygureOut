@@ -6,7 +6,8 @@ namespace ConfygureOut.Sources
 {
     public class AppSettingsSource : BaseConfigurationSource
     {
-        public AppSettingsSource(string name = "AppSettings") : base(name, supportsHotLoad: true) {}
+        public AppSettingsSource(string name = null) : 
+        base(name ?? "AppSettings", supportsHotLoad: true) {}
 
         public override object GetConfigurationValue(string key, Type propertyType)
         {
