@@ -8,8 +8,7 @@ namespace ConfygureOut.Sources
             string sourceName = null)
         {
             var appSettingsSource = new AppSettingsSource(sourceName);
-            configuration.RegisterConfigurationSources(appSettingsSource);
-            return configuration;
+            return configuration.RegisterConfigurationSources(appSettingsSource);
         }
     }
 }
