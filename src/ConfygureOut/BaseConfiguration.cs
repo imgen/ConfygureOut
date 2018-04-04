@@ -27,12 +27,12 @@ namespace ConfygureOut
             _defaultSourceName = defaultSourceName;
         }
 
-        public void RegisterConfigurationSources(params BaseConfigurationSource[] sources)
+        public BaseConfiguration RegisterConfigurationSources(params BaseConfigurationSource[] sources)
         {
-            RegisterConfigurationSources(sources.Select(x => (x, (TimeSpan?)null)).ToArray());
+            return RegisterConfigurationSources(sources.Select(x => (x, (TimeSpan?)null)).ToArray());
         }
 
-        public void RegisterConfigurationSources(params (BaseConfigurationSource source, TimeSpan? refreshInterval)[] sources)
+        public BaseConfiguration RegisterConfigurationSources(params (BaseConfigurationSource source, TimeSpan? refreshInterval)[] sources)
         {
             foreach (var (source, refreshInterval) in sources)
             {
@@ -42,6 +42,7 @@ namespace ConfygureOut
                     RefreshInterval = refreshInterval
                 };
             }
+            return this;
         }
 
         private string GetCallingMemberName(int stackLevel = 1)
