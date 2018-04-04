@@ -1,5 +1,4 @@
-﻿using System;
-namespace ConfygureOut.Sources
+﻿namespace ConfygureOut.Sources
 {
     public static class EnvironmentVariableUseExtension
     {
@@ -10,8 +9,7 @@ namespace ConfygureOut.Sources
         {
             var environmentVariableSource = new EnvironmentVariableSource(
                 environmentVariableKeyPrefix, sourceName);
-            configuration.RegisterConfigurationSources(environmentVariableSource);
-            return configuration;
+            return configuration.RegisterConfigurationSources(environmentVariableSource);
         }
     }
 }

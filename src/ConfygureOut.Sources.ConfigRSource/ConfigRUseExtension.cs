@@ -1,5 +1,4 @@
-﻿using System;
-namespace ConfygureOut.Sources
+﻿namespace ConfygureOut.Sources
 {
     public static class ConfigRUseExtension
     {
@@ -12,8 +11,7 @@ namespace ConfygureOut.Sources
             var configRSource = new ConfigRSource(configFilePath, 
                                                       autoReloadOnFileChange, 
                                                       sourceName);
-            configuration.RegisterConfigurationSources(configRSource);
-            return configuration;
+            return configuration.RegisterConfigurationSources(configRSource);
         }
     }
 }

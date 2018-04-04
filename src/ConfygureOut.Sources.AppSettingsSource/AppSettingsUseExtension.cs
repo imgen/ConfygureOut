@@ -1,5 +1,4 @@
-﻿using System;
-namespace ConfygureOut.Sources
+﻿namespace ConfygureOut.Sources
 {
     public static class AppSettingsUseExtension
     {
