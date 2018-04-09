@@ -18,7 +18,7 @@ namespace ConfygureOut.Sources
             string name = null): base(name?? "ConfigR", supportsHotLoad: false)
         {
             _configFilePath = configFilePath?? "./config.csx";
-            if (!_configFilePath.IsHttpUrl() || !autoReloadOnFileChange)
+            if (_configFilePath.IsHttpUrl() || !autoReloadOnFileChange)
             {
                 return;
             }
@@ -29,7 +29,14 @@ namespace ConfygureOut.Sources
                 Path = directory,
                 Filter = fileName,
                 IncludeSubdirectories = false,
-                NotifyFilter = NotifyFilters.LastWrite
+                NotifyFilter = NotifyFilters.Attributes |
+                    NotifyFilters.CreationTime |
+                    NotifyFilters.FileName |
+                    NotifyFilters.LastAccess |
+                    NotifyFilters.LastWrite |
+                    NotifyFilters.Size |
+                    NotifyFilters.Security,
+                EnableRaisingEvents = true
             };
             _watcher.Changed += async (sender, args) =>
             {
@@ -43,7 +50,6 @@ namespace ConfygureOut.Sources
                     _watcher.EnableRaisingEvents = true;
                 }
             };
-            _watcher.EnableRaisingEvents = true;
         }
 
         public override async Task LoadConfigurations()

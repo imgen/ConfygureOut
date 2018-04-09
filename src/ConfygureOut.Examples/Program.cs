@@ -16,6 +16,8 @@ namespace ConfygureOut.Examples
             WriteLine($"WhosWho is {configuration.WhosWho}");
             WriteLine($"Me is {configuration.Me}");
             ReadKey();
+
+            WriteLine($"ApiUrl is {configuration.ApiUrl}");
         }
     }
 
@@ -24,7 +26,8 @@ namespace ConfygureOut.Examples
         public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.ConfigR))
         {
             this.UseAppSettings()
-                .UseConfigR(autoReloadOnFileChange: true)
+                .UseConfigR(@"C:\Drive\Create\ConfygureOut\src\ConfygureOut.Examples\config.csx", 
+                autoReloadOnFileChange: true)
                 .UseEnvironmentVariable("CONFYGURE_OUT_");
         }
 
