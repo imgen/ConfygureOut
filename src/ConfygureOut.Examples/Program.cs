@@ -31,8 +31,9 @@ namespace ConfygureOut.Examples
         public string ApiUrl { get; set; }
         public int MaxRetryTimes { get; set; }
 
-        [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),
-            "DB_CONNECTION_STRING", IsSensitive = true)]
+        [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable))]
+        [ConfigurationKey("DB_CONNECTION_STRING")]
+        [Sensitive]
         public string DbConnectionString => PullConfigurationValueFromSourceWithDefault("Not connected to DB");
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable),

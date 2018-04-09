@@ -5,14 +5,14 @@
     <DebugType>full</DebugType>
     <Authors>imgen</Authors>
     <Company>C &amp; R Holdings LTD</Company>
-    <Description>Make the API more fluent</Description>
+    <Description>Add Sensitive attribute and ConfigurationKey attribute to simplify the configuration</Description>
     <Copyright></Copyright>
     <PackageLicenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/imgen/ConfygureOut</PackageProjectUrl>
     <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
     <PackageTags>configuration</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageReleaseNotes>Better handling for pulling configuration value from source with default value</PackageReleaseNotes>
   </PropertyGroup>
 

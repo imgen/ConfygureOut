@@ -35,7 +35,18 @@ namespace ConfygureOut
 
             foreach (var property in properties.Where(x => x.CanWrite))
             {
-                PushToProperty(target, property, property.GetCustomAttribute<ConfigurationSourceAttribute>());
+                var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
+                var configurationKeyAttr = property.GetCustomAttribute<ConfigurationKeyAttribute>();
+                if (configurationKeyAttr != null)
+                {
+                    if (configurationSourceAttr == null)
+                    {
+                        configurationSourceAttr = new ConfigurationSourceAttribute(null);
+                    }
+
+                    configurationSourceAttr.Key = configurationKeyAttr.Key;
+                }
+                PushToProperty(target, property, configurationSourceAttr);
             }
         }
 
