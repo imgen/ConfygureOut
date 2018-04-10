@@ -88,7 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ConfygureOut.Sources.ConfigRSource.nuspec" />
+    <None Include="ConfygureOut.Sources.ConfigRSource.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="PublishToNuget.cmd" />
   </ItemGroup>
@@ -97,9 +99,9 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfygureOut\ConfygureOut.csproj">
-      <Project>{a1fa36f0-8eae-4eff-ab86-394ef243b564}</Project>
-      <Name>ConfygureOut</Name>
+    <ProjectReference Include="..\ConfygureOut.FullNetFramework\ConfygureOut.FullNetFramework.csproj">
+      <Project>{3a1d1849-c712-4c66-8526-81277f2bf01a}</Project>
+      <Name>ConfygureOut.FullNetFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,19 +5,17 @@
     <DebugType>full</DebugType>
     <Authors>imgen</Authors>
     <Company>C &amp; R Holdings LTD</Company>
-    <Description>Add Sensitive attribute and ConfigurationKey attribute to simplify the configuration</Description>
+    <Description>A configuration framework to mix configurations from different sources together.</Description>
     <Copyright></Copyright>
     <PackageLicenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/imgen/ConfygureOut</PackageProjectUrl>
     <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
     <PackageTags>configuration</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
-    <PackageReleaseNotes>Better handling for pulling configuration value from source with default value</PackageReleaseNotes>
+    <Version>1.0.6</Version>
+    <PackageReleaseNotes>Add .NET framework support</PackageReleaseNotes>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="TupleExtensions.VictorGavrish" Version="1.2.4" />
-  </ItemGroup>
 
 </Project>

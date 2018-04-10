@@ -2,19 +2,19 @@
 <package >
   <metadata>
     <id>ConfygureOut.AppSettingsSource</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>imgen</authors>
     <owners>imgen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/imgen/ConfygureOut</projectUrl>
     <description>A configuration source for ConfygureOut that loads configuration values from AppSettings section of web.config or app.config</description>
-    <releaseNotes>Add autoRefreshInterval argument to the UseXxx idiom. </releaseNotes>
+    <releaseNotes>Remove dependency on .NET standard</releaseNotes>
     <tags>configuration</tags>
     <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
 	<dependencies>
-      <group targetFramework=".NETStandard2.0">
-        <dependency id="ConfygureOut" version="1.0.4" />
+      <group targetFramework="net461">
+        <dependency id="ConfygureOut" version="1.0.6" />
       </group>
     </dependencies>
   </metadata>

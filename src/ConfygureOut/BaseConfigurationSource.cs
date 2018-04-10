@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using TupleExtensions;
 
 namespace ConfygureOut
 {
@@ -52,7 +51,7 @@ namespace ConfygureOut
 
         public virtual Task LoadConfigurations()
         {
-            return Task.CompletedTask;
+            return Task.FromResult<object>(null);
         }
 
         public virtual object PushToProperty(IConfiguration target,

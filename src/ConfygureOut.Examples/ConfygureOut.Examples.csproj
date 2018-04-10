@@ -126,13 +126,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConfygureOut.FullNetFramework\ConfygureOut.FullNetFramework.csproj">
+      <Project>{3a1d1849-c712-4c66-8526-81277f2bf01a}</Project>
+      <Name>ConfygureOut.FullNetFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConfygureOut.Sources.EnvironmentVariableSource\ConfygureOut.Sources.EnvironmentVariableSource.csproj">
       <Project>{0556b42d-a171-4d06-8598-629c23f19676}</Project>
       <Name>ConfygureOut.Sources.EnvironmentVariableSource</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ConfygureOut\ConfygureOut.csproj">
-      <Project>{a1fa36f0-8eae-4eff-ab86-394ef243b564}</Project>
-      <Name>ConfygureOut</Name>
     </ProjectReference>
     <ProjectReference Include="..\ConfygureOut.Sources.ConfigRSource\ConfygureOut.Sources.ConfigRSource.csproj">
       <Project>{E179C5B6-EC5D-4C13-82E3-9C62097D27BD}</Project>

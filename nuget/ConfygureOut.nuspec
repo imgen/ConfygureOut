@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ConfygureOut</id>
+    <version>1.0.6</version>
+    <authors>imgen</authors>
+    <owners>imgen</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/imgen/ConfygureOut</projectUrl>
+    <description>A configuration framework to mix configurations from different sources together.</description>
+    <releaseNotes>Add .NET framework support</releaseNotes>
+    <tags>configuration</tags>
+    <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework="net45">
+        <dependency id="System.ValueTuple" version="4.4.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Drive\Create\ConfygureOut\src\ConfygureOut\bin\Debug\netstandard2.0\ConfygureOut.dll" target="lib\netstandard2.0\ConfygureOut.dll" />
+    <file src="C:\Drive\Create\ConfygureOut\src\ConfygureOut\bin\Debug\netstandard2.0\ConfygureOut.pdb" target="lib\netstandard2.0\ConfygureOut.pdb" />
+    <file src="C:\Drive\Create\ConfygureOut\src\ConfygureOut\bin\Debug\netstandard2.0\ConfygureOut.deps.json" target="lib\netstandard2.0\ConfygureOut.deps.json" />
+    <file src="C:\Drive\Create\ConfygureOut\src\ConfygureOut.FullNetFramework\bin\Debug\ConfygureOut.dll" target="lib\net45\ConfygureOut.dll" />
+    <file src="C:\Drive\Create\ConfygureOut\src\ConfygureOut.FullNetFramework\bin\Debug\ConfygureOut.pdb" target="lib\net45\ConfygureOut.pdb" />
+  </files>
+</package>
