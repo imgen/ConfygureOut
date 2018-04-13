@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfygureOut.Sources.AppSet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfygureOut.FullNetFramework", "ConfygureOut.FullNetFramework\ConfygureOut.FullNetFramework.csproj", "{3A1D1849-C712-4C66-8526-81277F2BF01A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{D4CD8DB1-7BA5-4B42-986A-DE6942B2BDAB}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuget\ConfygureOut.nuspec = ..\nuget\ConfygureOut.nuspec
+		..\nuget\publish.cmd = ..\nuget\publish.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

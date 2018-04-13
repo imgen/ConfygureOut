@@ -2,19 +2,19 @@
 <package >
   <metadata>
     <id>ConfygureOut.ConfigRSource</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <authors>imgen</authors>
     <owners>imgen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/imgen/ConfygureOut</projectUrl>
     <description>A configuration source for ConfygureOut that loads configuration values from ConfigR files</description>
-    <releaseNotes>Remove dependency on .NET standard</releaseNotes>
+    <releaseNotes>Fix compile issues</releaseNotes>
     <tags>configuration</tags>
     <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
 	<dependencies>
 	  <group targetFramework="net461">
-      <dependency id="ConfygureOut" version="1.0.6" />
+      <dependency id="ConfygureOut" version="1.0.7" />
 		  <dependency id="ConfigR" version="1.0.0" />
 		  <dependency id="ConfigR.Roslyn.CSharp" version="1.0.0" />
 		  <dependency id="Microsoft.CodeAnalysis.Analyzers" version="2.6.0" exclude="Build" />
@@ -45,6 +45,7 @@
 		  <dependency id="System.Text.Encoding" version="4.3.0" />
 		  <dependency id="System.Threading" version="4.3.0" />
 		  <dependency id="System.Threading.Tasks" version="4.3.0" />
+      <dependency id="System.ValueTuple" version="4.4.0" />
 	  </group>
     </dependencies>
   </metadata>
