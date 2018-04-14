@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\ConfygureOut.Shared\ConfygureOut.Shared.projitems" Label="Shared" Condition="Exists('..\ConfygureOut.Shared\ConfygureOut.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,42 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ConfygureOut\BaseConfiguration.cs">
-      <Link>BaseConfiguration.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\BaseConfigurationSource.cs">
-      <Link>BaseConfigurationSource.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\CommonExtensions.cs">
-      <Link>CommonExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\ConfigurationKeyAttribute.cs">
-      <Link>ConfigurationKeyAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\ConfigurationSourceAttribute.cs">
-      <Link>ConfigurationSourceAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\ConfigurationSourceSetting.cs">
-      <Link>ConfigurationSourceSetting.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\ConfigurationValueNotFound.cs">
-      <Link>ConfigurationValueNotFound.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\IConfiguration.cs">
-      <Link>IConfiguration.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\NonConfigurableAttribute.cs">
-      <Link>NonConfigurableAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\Sensitive.cs">
-      <Link>Sensitive.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\TupleKeyValuePairExtensions.cs">
-      <Link>TupleKeyValuePairExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ConfygureOut\TupleLinqExtensions.cs">
-      <Link>TupleLinqExtensions.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

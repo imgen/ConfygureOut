@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfygureOut", "ConfygureOut\ConfygureOut.csproj", "{A1FA36F0-8EAE-4EFF-AB86-394EF243B564}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfygureOut", "ConfygureOut\ConfygureOut.csproj", "{A1FA36F0-8EAE-4EFF-AB86-394EF243B564}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfygureOut.Sources.ConfigRSource", "ConfygureOut.Sources.ConfigRSource\ConfygureOut.Sources.ConfigRSource.csproj", "{E179C5B6-EC5D-4C13-82E3-9C62097D27BD}"
 EndProject
@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{D4CD8DB1
 		..\nuget\ConfygureOut.nuspec = ..\nuget\ConfygureOut.nuspec
 		..\nuget\publish.cmd = ..\nuget\publish.cmd
 	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ConfygureOut.Shared", "ConfygureOut.Shared\ConfygureOut.Shared.shproj", "{39379BD7-FFC1-490E-9995-D12FA3729C51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,4 +18,5 @@
     <FileVersion>1.0.6.0</FileVersion>
   </PropertyGroup>
 
+  <Import Project="..\ConfygureOut.Shared\ConfygureOut.Shared.projitems" Label="Shared" Condition="Exists('..\ConfygureOut.Shared\ConfygureOut.Shared.projitems')" />
 </Project>
