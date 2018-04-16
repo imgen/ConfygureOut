@@ -12,10 +12,10 @@
     <RepositoryUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</RepositoryUrl>
     <PackageTags>configuration</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.6</Version>
+    <Version>1.0.9</Version>
     <PackageReleaseNotes>Add .NET framework support</PackageReleaseNotes>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
+    <FileVersion>1.0.9.0</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\ConfygureOut.Shared\ConfygureOut.Shared.projitems" Label="Shared" Condition="Exists('..\ConfygureOut.Shared\ConfygureOut.Shared.projitems')" />

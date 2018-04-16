@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ConfygureOut</id>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <authors>imgen</authors>
     <owners>imgen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/imgen/ConfygureOut/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/imgen/ConfygureOut</projectUrl>
     <description>A configuration framework to mix configurations from different sources together.</description>
-    <releaseNotes>Add CombinedSource</releaseNotes>
+    <releaseNotes>Fix dll version and nuget version mismatch</releaseNotes>
     <tags>configuration</tags>
     <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
     <dependencies>
