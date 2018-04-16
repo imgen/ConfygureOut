@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ConfygureOut.Shared;
 
 namespace ConfygureOut
 {

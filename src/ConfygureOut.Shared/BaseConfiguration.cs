@@ -68,6 +68,7 @@ namespace ConfygureOut
 
         protected object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
+            // ReSharper disable once AssignNullToNotNullAttribute
             return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
         }
 

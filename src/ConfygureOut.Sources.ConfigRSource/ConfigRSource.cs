@@ -1,67 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ConfigR;
 
 namespace ConfygureOut.Sources
 {
-    public class ConfigRSource: BaseConfigurationSource
+    public class ConfigRSource: BaseFileConfigurationSource
     {
-        private readonly string _configFilePath;
-        private IDictionary<string, object> _configurations;
-        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
-        private readonly FileSystemWatcher _watcher;
-
         public ConfigRSource(string configFilePath = null,
             bool autoReloadOnFileChange = false,
-            string name = null): base(name?? "ConfigR", supportsHotLoad: false)
+            string name = null): base(name?? "ConfigR", configFilePath?? "./config.csx", autoReloadOnFileChange)
         {
-            _configFilePath = configFilePath?? "./config.csx";
-            if (_configFilePath.IsHttpUrl() || !autoReloadOnFileChange)
-            {
-                return;
-            }
-            var directory = Path.GetDirectoryName(_configFilePath);
-            var fileName = Path.GetFileName(_configFilePath);
-            _watcher = new FileSystemWatcher
-            {
-                Path = directory,
-                Filter = fileName,
-                IncludeSubdirectories = false,
-                NotifyFilter = NotifyFilters.Attributes |
-                    NotifyFilters.CreationTime |
-                    NotifyFilters.FileName |
-                    NotifyFilters.LastAccess |
-                    NotifyFilters.LastWrite |
-                    NotifyFilters.Size |
-                    NotifyFilters.Security,
-                EnableRaisingEvents = true
-            };
-            _watcher.Changed += async (sender, args) =>
-            {
-                _watcher.EnableRaisingEvents = false;
-                try
-                {
-                    await PushToAllTargets();
-                }
-                finally
-                {
-                    _watcher.EnableRaisingEvents = true;
-                }
-            };
         }
 
         public override async Task LoadConfigurations()
         {
-            _configurations = await new Config().UseRoslynCSharpLoader(_configFilePath).LoadDictionary();
-        }
-
-        public override object GetConfigurationValue(string key, Type propertyType)
-        {
-            return _configurations.ContainsKey(key)
-                ? _configurations[key]
-              : ConfigurationValueNotFound.Instance;
+            Configurations = await new Config().UseRoslynCSharpLoader(ConfigFilePath).LoadDictionary();
         }
     }
 }

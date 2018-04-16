@@ -23,16 +23,21 @@ namespace ConfygureOut.Examples
 
     public class MyConfig: BaseConfiguration
     {
-        public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.ConfigR))
+        public MyConfig(): base(defaultSourceName: nameof(ConfigSourceNames.Combined))
         {
-            this.UseAppSettings()
-                .UseConfigR(@"C:\Drive\Create\ConfygureOut\src\ConfygureOut.Examples\config.csx", 
-                autoReloadOnFileChange: true)
+            var configrSource = new ConfigRSource(@"./config.csx",
+                autoReloadOnFileChange: true);
+            var jsonSource = new JsonSource("./config.json", true);
+            this.UseCombinedSource("Combined",
+                    false,
+                    new BaseConfigurationSource[] { configrSource, jsonSource })
+                .UseAppSettings()
                 .UseEnvironmentVariable("CONFYGURE_OUT_");
         }
 
         public string ApiUrl { get; set; }
         public int MaxRetryTimes { get; set; }
+        public int MaxLength { get; set; }
 
         [ConfigurationSource(nameof(ConfigSourceNames.EnvironmentVariable))]
         [ConfigurationKey("DB_CONNECTION_STRING")]
@@ -54,6 +59,8 @@ namespace ConfygureOut.Examples
     {
         ConfigR,
         EnvironmentVariable,
-        AppSettings
+        AppSettings,
+        Json,
+        Combined
     }
 }

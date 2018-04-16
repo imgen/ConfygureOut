@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseConfigurationSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseFileConfigurationSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinedSourceUseExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommonExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConfigurationKeyAttribute.cs" />

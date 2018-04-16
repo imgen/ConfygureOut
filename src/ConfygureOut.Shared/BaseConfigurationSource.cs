@@ -59,7 +59,7 @@ namespace ConfygureOut
             ConfigurationSourceAttribute configSourceAttr)
         {
             var key = ResolveConfigurationKey(property, configSourceAttr);
-            var value = GetConfigurationValue(key, property.DeclaringType);
+            var value = GetConfigurationValue(key, property.PropertyType);
             if (property.CanWrite && value != ConfigurationValueNotFound.Instance)
             {
                 property.SetValue(target, value);

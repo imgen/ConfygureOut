@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConfygureOut.Shared
+namespace ConfygureOut
 {
     public class CombinedSource: BaseConfigurationSource
     {

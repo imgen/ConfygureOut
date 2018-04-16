@@ -18,10 +18,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{D4CD8DB1-7BA5-4B42-986A-DE6942B2BDAB}"
 	ProjectSection(SolutionItems) = preProject
 		..\nuget\ConfygureOut.nuspec = ..\nuget\ConfygureOut.nuspec
-		..\nuget\publish.cmd = ..\nuget\publish.cmd
+		..\nuget\ConfygureOut.Sources.JsonSource.nuspec = ..\nuget\ConfygureOut.Sources.JsonSource.nuspec
+		..\nuget\publish-confygure-out.cmd = ..\nuget\publish-confygure-out.cmd
+		..\nuget\publish-json-source.cmd = ..\nuget\publish-json-source.cmd
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ConfygureOut.Shared", "ConfygureOut.Shared\ConfygureOut.Shared.shproj", "{39379BD7-FFC1-490E-9995-D12FA3729C51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfygureOut.Sources.JsonSource", "ConfygureOut.Sources.JsonSource\ConfygureOut.Sources.JsonSource.csproj", "{C26534B2-BA68-44AC-A0F0-06872661F56A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -57,6 +61,10 @@ Global
 		{3A1D1849-C712-4C66-8526-81277F2BF01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A1D1849-C712-4C66-8526-81277F2BF01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A1D1849-C712-4C66-8526-81277F2BF01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C26534B2-BA68-44AC-A0F0-06872661F56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C26534B2-BA68-44AC-A0F0-06872661F56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C26534B2-BA68-44AC-A0F0-06872661F56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C26534B2-BA68-44AC-A0F0-06872661F56A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

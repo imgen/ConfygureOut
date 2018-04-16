@@ -40,6 +40,9 @@
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
@@ -139,10 +142,17 @@
       <Project>{99FAF426-71FB-4BE2-BB0F-B784E2F077DB}</Project>
       <Name>ConfygureOut.Sources.AppSettingsSource</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConfygureOut.Sources.JsonSource\ConfygureOut.Sources.JsonSource.csproj">
+      <Project>{c26534b2-ba68-44ac-a0f0-06872661f56a}</Project>
+      <Name>ConfygureOut.Sources.JsonSource</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="config.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
