@@ -9,20 +9,20 @@
     <Import_RootNamespace>ConfygureOut.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseConfiguration.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)BaseConfigurationSource.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseConfigurationSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinedSourceUseExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonExtensions.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationKeyAttribute.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationSourceAttribute.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationSourceSetting.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationValueNotFound.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)IConfiguration.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)NonConfigurableAttribute.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)Sensitive.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)TupleKeyValuePairExtensions.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)TupleLinqExtensions.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationKeyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationSourceAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationSourceSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationValueNotFound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NonConfigurableAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensitive.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TupleKeyValuePairExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TupleLinqExtensions.cs" />
   </ItemGroup>
 </Project>
