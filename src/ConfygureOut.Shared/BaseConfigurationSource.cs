@@ -22,10 +22,10 @@ namespace ConfygureOut
         {
             await LoadConfigurations();
             var propertyArray = properties as PropertyInfo[] ?? properties.ToArray();
-            PushConfiguration(target, propertyArray);
+            PushToConfiguration(target, propertyArray);
         }
 
-        private void PushConfiguration(IConfiguration target, PropertyInfo[] properties)
+        public virtual void PushToConfiguration(IConfiguration target, PropertyInfo[] properties)
         {
             if (!_targets.ContainsKey(target))
             {
@@ -80,11 +80,11 @@ namespace ConfygureOut
             await LoadConfigurations();
             foreach (var (target, properties) in _targets)
             {
-                PushConfiguration(target, properties);
+                PushToConfiguration(target, properties);
             }
         }
 
-        private readonly Dictionary<IConfiguration, PropertyInfo[]> _targets = 
+        protected readonly Dictionary<IConfiguration, PropertyInfo[]> _targets = 
             new Dictionary<IConfiguration, PropertyInfo[]>();
     }
 }

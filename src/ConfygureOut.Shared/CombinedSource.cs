@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace ConfygureOut
 {
@@ -28,6 +29,14 @@ namespace ConfygureOut
             foreach(var source in _sources)
             {
                 await source.LoadConfigurations();
+            }
+		}
+
+        public override void PushToConfiguration(IConfiguration target, PropertyInfo[] properties)
+		{
+            foreach(var source in _sources)
+            {
+                source.PushToConfiguration(target, properties);
             }
 		}
 
