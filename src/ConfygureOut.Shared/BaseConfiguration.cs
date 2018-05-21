@@ -12,6 +12,9 @@ namespace ConfygureOut
     {
         private string _defaultSourceName;
 
+        protected static readonly BindingFlags PropertyBindingFlags = BindingFlags.NonPublic | BindingFlags.Public |
+                                                                    BindingFlags.Instance;
+
         protected string DefaultSourceName
         {
             get => _defaultSourceName ?? _configurationSourceRegistration.Keys.First();
@@ -56,7 +59,8 @@ namespace ConfygureOut
 
         protected object PullConfigurationValueFromSourceWithDefault(object defaultValue)
         {
-            var property = GetType().GetProperty(GetCallingMemberName(stackLevel: 2));
+            var property = GetType().GetProperty(
+                GetCallingMemberName(stackLevel: 2), PropertyBindingFlags);
             return PullConfigurationValueFromSourceWithDefault(
                 property, 
                 // ReSharper disable once PossibleNullReferenceException
@@ -65,7 +69,7 @@ namespace ConfygureOut
 
         public object PullConfigurationValueFromSourceWithDefault(string propertyName, object defaultValue)
         {
-            var property = GetType().GetProperty(propertyName);
+            var property = GetType().GetProperty(propertyName, PropertyBindingFlags);
             return PullConfigurationValueFromSourceWithDefault(property, 
                 // ReSharper disable once PossibleNullReferenceException
                 property.PropertyType, defaultValue);
@@ -74,7 +78,7 @@ namespace ConfygureOut
         protected object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName));
+            return PullConfigurationValueFromSource(GetType().GetProperty(propertyName, PropertyBindingFlags));
         }
 
         protected T PullConfigurationValueFromSource<T>([CallerMemberName] string propertyName = null)
@@ -85,13 +89,13 @@ namespace ConfygureOut
         public T PullConfigurationValueFromSourceWithDefault<T>(string propertyName, T defaultValue)
         {
             return (T)PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(propertyName), typeof(T), defaultValue);
+                GetType().GetProperty(propertyName, PropertyBindingFlags), typeof(T), defaultValue);
         }
 
         protected T PullConfigurationValueFromSourceWithDefault<T>(T defaultValue)
         {
             return (T)PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), typeof(T), defaultValue);
+                GetType().GetProperty(GetCallingMemberName(stackLevel: 2), PropertyBindingFlags), typeof(T), defaultValue);
         }
 
         public object PullConfigurationValueFromSource(PropertyInfo property)
@@ -128,7 +132,7 @@ namespace ConfygureOut
             var type = GetType();
             if (source.Name == DefaultSourceName)
             {
-                properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                properties = type.GetProperties(PropertyBindingFlags)
                     .Except(type.GetPropertiesWithAttribute<ConfigurationSourceAttribute>())
                     .Except(type.GetPropertiesWithAttribute<NonConfigurableAttribute>())
                     .PrependAll(properties.ToArray());

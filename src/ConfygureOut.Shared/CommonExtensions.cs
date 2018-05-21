@@ -193,10 +193,10 @@ namespace ConfygureOut
 
         public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute(this Type type,
             Type attrType,
-            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
             Func<Attribute, bool> checker = null)
         {
-            return type.GetProperties()
+            return type.GetProperties(bindingFlags)
                             .Where(x => x.GetCustomAttributes(true)
                                    .Any(attr => attr.GetType() == attrType && (checker?.Invoke(attr as Attribute)?? true))
                                   );
