@@ -56,14 +56,19 @@ namespace ConfygureOut
 
         protected object PullConfigurationValueFromSourceWithDefault(object defaultValue)
         {
+            var property = GetType().GetProperty(GetCallingMemberName(stackLevel: 2));
             return PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), defaultValue);
+                property, 
+                // ReSharper disable once PossibleNullReferenceException
+                property.PropertyType, defaultValue);
         }
 
         public object PullConfigurationValueFromSourceWithDefault(string propertyName, object defaultValue)
         {
-            return PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(propertyName), defaultValue);
+            var property = GetType().GetProperty(propertyName);
+            return PullConfigurationValueFromSourceWithDefault(property, 
+                // ReSharper disable once PossibleNullReferenceException
+                property.PropertyType, defaultValue);
         }
 
         protected object PullConfigurationValueFromSource([CallerMemberName]string propertyName = null)
@@ -80,21 +85,24 @@ namespace ConfygureOut
         public T PullConfigurationValueFromSourceWithDefault<T>(string propertyName, T defaultValue)
         {
             return (T)PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(propertyName), defaultValue);
+                GetType().GetProperty(propertyName), typeof(T), defaultValue);
         }
 
         protected T PullConfigurationValueFromSourceWithDefault<T>(T defaultValue)
         {
             return (T)PullConfigurationValueFromSourceWithDefault(
-                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), defaultValue);
+                GetType().GetProperty(GetCallingMemberName(stackLevel: 2)), typeof(T), defaultValue);
         }
 
         public object PullConfigurationValueFromSource(PropertyInfo property)
         {
-            return PullConfigurationValueFromSourceWithDefault(property, ConfigurationValueNotFound.Instance);
+            return PullConfigurationValueFromSourceWithDefault(property, 
+                property.PropertyType,
+                ConfigurationValueNotFound.Instance);
         }
 
-        public object PullConfigurationValueFromSourceWithDefault(PropertyInfo property, object defaultValue)
+        public object PullConfigurationValueFromSourceWithDefault(
+            PropertyInfo property, Type valueType, object defaultValue)
         {
             var configurationSourceAttr = property.GetCustomAttribute<ConfigurationSourceAttribute>();
             var sourceName = configurationSourceAttr?.Name ?? DefaultSourceName;
@@ -110,7 +118,7 @@ namespace ConfygureOut
                 return defaultReturnValue;
             }
 
-            var value = source.GetConfigurationValue(configurationKey, property.PropertyType);
+            var value = source.GetConfigurationValue(configurationKey, valueType);
             return value == ConfigurationValueNotFound.Instance? defaultReturnValue : value;
         }
 
