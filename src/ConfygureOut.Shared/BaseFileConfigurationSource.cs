@@ -50,10 +50,11 @@ namespace ConfygureOut
             };
         }
 
-        public override object GetConfigurationValue(string key, Type propertyType)
+        public override object GetConfigurationValue(string key, Type valueType)
         {
+            valueType = Nullable.GetUnderlyingType(valueType) ?? valueType;
             return Configurations.ContainsKey(key)
-                ? Convert.ChangeType(Configurations[key], propertyType)
+                ? Convert.ChangeType(Configurations[key], valueType)
               : ConfigurationValueNotFound.Instance;
         }
     }
