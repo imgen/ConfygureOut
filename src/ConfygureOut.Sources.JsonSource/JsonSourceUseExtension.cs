@@ -11,10 +11,10 @@ namespace ConfygureOut.Sources
             string sourceName = null,
             TimeSpan? autoRefreshInterval = null)
         {
-            var configRSource = new JsonSource(configFilePath,
+            var jsonSource = new JsonSource(configFilePath,
                                                         autoReloadOnFileChange,
                                                         sourceName);
-            return configuration.RegisterConfigurationSources((configRSource, autoRefreshInterval));
+            return configuration.RegisterConfigurationSources((jsonSource, autoRefreshInterval));
         }
     }
 }
