@@ -14,7 +14,8 @@ namespace ConfygureOut.Sources
             var configRSource = new ConfigRSource(configFilePath, 
                                                       autoReloadOnFileChange, 
                                                       sourceName);
-            return configuration.RegisterConfigurationSources((configRSource, autoRefreshInterval));
+            return configuration.RegisterConfigurationSources((configRSource, 
+                                                               autoRefreshInterval));
         }
     }
 }
