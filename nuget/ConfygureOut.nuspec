@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ConfygureOut</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <authors>imgen</authors>
     <owners>imgen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -11,7 +11,6 @@
     <description>A configuration framework to mix configurations from different sources together.</description>
     <releaseNotes>Add BaseFileConfigurationSource</releaseNotes>
     <tags>configuration</tags>
-    <repository url="https://github.com/imgen/ConfygureOut/blob/master/LICENSE" />
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
       <group targetFramework="net45">
